@@ -1,8 +1,10 @@
 const activityMultipliers = {
-  light: 0.35,
-  moderate: 0.5,
-  intense: 0.7,
+  light: 0.12,
+  moderate: 0.18,
+  intense: 0.25,
 };
+
+const MAX_DAILY_TARGET_LITERS = 5;
 
 const climateBonus = {
   mild: 0,
@@ -70,15 +72,27 @@ function calculate() {
     climateBonus[elements.climate.value] +
     stageBonus[elements.stage.value] +
     drinks * 0.12;
-  const totalLiters = Math.min(Math.max(baseLiters + activityLiters + extras, 1.5), 6);
+  const uncappedLiters = baseLiters + activityLiters + extras;
+  const totalLiters = Math.min(
+    Math.max(baseLiters + activityLiters + extras, 1.5),
+    MAX_DAILY_TARGET_LITERS,
+  );
+  const variableLiters = activityLiters + extras;
+  const cappedVariableLiters = Math.max(totalLiters - baseLiters, 0);
+  const breakdownScale =
+    uncappedLiters > totalLiters && variableLiters > 0
+      ? cappedVariableLiters / variableLiters
+      : 1;
+  const displayedActivityLiters = activityLiters * breakdownScale;
+  const displayedExtras = extras * breakdownScale;
   const cups = Math.round(totalLiters / 0.237);
   const ounces = Math.round(totalLiters * 33.814);
 
   elements.liters.textContent = rounded(totalLiters, 1).toFixed(1);
   elements.summary.textContent = `${cups} cups or about ${ounces} fl oz.`;
   elements.base.textContent = `${rounded(baseLiters, 1).toFixed(1)} L`;
-  elements.activity.textContent = `${rounded(activityLiters, 1).toFixed(1)} L`;
-  elements.extra.textContent = `${rounded(extras, 1).toFixed(1)} L`;
+  elements.activity.textContent = `${rounded(displayedActivityLiters, 1).toFixed(1)} L`;
+  elements.extra.textContent = `${rounded(displayedExtras, 1).toFixed(1)} L`;
 }
 
 document.querySelectorAll("[data-unit]").forEach((button) => {
