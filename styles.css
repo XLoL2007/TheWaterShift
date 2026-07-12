@@ -903,6 +903,37 @@ select:focus-visible {
   }
 }
 
+@media (min-width: 1025px) and (min-height: 950px) {
+  .site-shell {
+    min-height: calc(100vh - 112px);
+    padding: clamp(22px, 3vh, 36px) 0 clamp(16px, 2.4vh, 28px);
+  }
+
+  .hero {
+    align-self: stretch;
+    gap: clamp(16px, 2vh, 26px);
+    justify-content: space-between;
+  }
+
+  .brand-logo {
+    width: clamp(265px, 24vw, 350px);
+    height: clamp(142px, 15.5vh, 178px);
+  }
+
+  .brand-visual {
+    min-height: clamp(230px, 25vh, 300px);
+  }
+
+  .calculator-card {
+    padding: clamp(25px, 2.6vh, 34px);
+  }
+
+  .result {
+    margin-top: clamp(18px, 1.8vh, 24px);
+    padding: clamp(19px, 2vh, 25px) 20px;
+  }
+}
+
 @media (max-width: 1024px) {
   .site-shell {
     grid-template-columns: minmax(0, 1fr);
@@ -919,6 +950,18 @@ select:focus-visible {
 
   .calculator-card {
     align-self: auto;
+  }
+
+  .feature-strip span:nth-child(3) {
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .feature-strip span:nth-child(3)::before {
+    position: static;
+    margin-right: 8px;
   }
 }
 
