@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TheWaterShift Daily Water Target Calculator</title>
+    <meta
+      name="description"
+      content="TheWaterShift calculator estimates a daily water intake target from body size, activity, climate, and common fluid needs."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-bg" aria-hidden="true"></div>
+
+    <main class="site-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <header class="brand-header">
+          <a class="brand-logo" href="./index.html" aria-label="TheWaterShift home">
+            <img
+              src="./public/brand/thewatershift-logo-transparent.png"
+              alt="TheWaterShift"
+              width="1254"
+              height="1254"
+            />
+          </a>
+          <div class="brand-copy">
+            <p>HYDRATE. FOCUS. <span>THRIVE.</span> TOGETHER.</p>
+            <strong aria-label="TheWaterShift hashtag">
+              <span>#The</span><span>Water</span><span>Shift</span>
+            </strong>
+          </div>
+        </header>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Personal water intake estimate</p>
+          <h1 id="page-title">
+            Find your daily <span>water target</span> in under a minute.
+          </h1>
+          <p>
+            Enter a few everyday details and get a practical hydration goal
+            adjusted for body size, activity, climate, and common fluid needs.
+          </p>
+        </div>
+
+        <div class="brand-visual" aria-hidden="true">
+          <div class="visual-ring"></div>
+          <div class="visual-card">
+            <div class="water-bottle">
+              <div class="bottle-cap"></div>
+              <div class="bottle-neck"></div>
+              <div class="bottle-body">
+                <div class="wave"></div>
+                <span class="line line-one"></span>
+                <span class="line line-two"></span>
+                <span class="line line-three"></span>
+              </div>
+            </div>
+            <div class="drop-mark">
+              <span></span>
+            </div>
+            <p>Small habit. Big impact.</p>
+          </div>
+          <span class="bubble bubble-one"></span>
+          <span class="bubble bubble-two"></span>
+          <span class="bubble bubble-three"></span>
+        </div>
+
+        <div class="feature-strip" aria-label="Calculator highlights">
+          <span>Weight-based</span>
+          <span>Activity-aware</span>
+          <span>Cups, ounces and liters</span>
+        </div>
+      </section>
+
+      <section class="calculator-card" aria-labelledby="calculator-title">
+        <div class="panel-head">
+          <p class="eyebrow">Calculator</p>
+          <h2 id="calculator-title">Your daily target</h2>
+        </div>
+
+        <form id="hydration-form" class="form" novalidate>
+          <label class="field" for="weight">
+            <span>Weight</span>
+            <span class="field-row">
+              <input id="weight" type="number" min="1" step="0.1" value="70" />
+              <span class="segmented unit-switch" role="group" aria-label="Weight unit">
+                <button
+                  class="active"
+                  type="button"
+                  data-unit="kg"
+                  aria-pressed="true"
+                >
+                  kg
+                </button>
+                <button type="button" data-unit="lb" aria-pressed="false">lb</button>
+              </span>
+            </span>
+          </label>
+
+          <label class="field" for="minutes">
+            <span>Active minutes today</span>
+            <input id="minutes" type="number" min="0" step="5" value="30" />
+          </label>
+
+          <fieldset class="field">
+            <legend>Activity intensity</legend>
+            <span class="segmented three" role="group" aria-label="Activity intensity">
+              <button type="button" data-intensity="light" aria-pressed="false">
+                Light
+              </button>
+              <button
+                class="active"
+                type="button"
+                data-intensity="moderate"
+                aria-pressed="true"
+              >
+                Moderate
+              </button>
+              <button type="button" data-intensity="intense" aria-pressed="false">
+                Intense
+              </button>
+            </span>
+          </fieldset>
+
+          <label class="field" for="climate">
+            <span>Climate or setting</span>
+            <select id="climate">
+              <option value="mild">Mild or mostly indoors</option>
+              <option value="warm" selected>Warm day</option>
+              <option value="hot">Hot, humid, or high altitude</option>
+            </select>
+          </label>
+
+          <label class="field" for="stage">
+            <span>Pregnancy or breastfeeding</span>
+            <select id="stage">
+              <option value="none">No</option>
+              <option value="pregnant">Pregnant</option>
+              <option value="breastfeeding">Breastfeeding</option>
+            </select>
+          </label>
+
+          <label class="field" for="drinks">
+            <span>Coffee, tea, or alcohol drinks</span>
+            <input id="drinks" type="number" min="0" step="1" value="1" />
+          </label>
+        </form>
+
+        <output
+          class="result"
+          for="weight minutes climate stage drinks"
+          aria-live="polite"
+        >
+          <span>Recommended target</span>
+          <strong><b id="liters">3.3</b> liters/day</strong>
+          <small id="summary">14 cups or about 112 fl oz.</small>
+          <i aria-hidden="true"></i>
+        </output>
+
+        <div class="breakdown" aria-label="Calculation breakdown">
+          <p>
+            <span>Base need</span>
+            <strong id="base">2.5 L</strong>
+          </p>
+          <p>
+            <span>Activity adds</span>
+            <strong id="activity">0.5 L</strong>
+          </p>
+          <p>
+            <span>Extra factors</span>
+            <strong id="extra">0.5 L</strong>
+          </p>
+        </div>
+
+        <p class="note" id="estimate-note">
+          This is an educational estimate for healthy adults. Medical
+          conditions, medications, intense heat, and athletic training can
+          change fluid needs.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="hashtag" aria-label="TheWaterShift hashtag">
+        <span>#The</span><span>Water</span><span>Shift</span>
+      </p>
+      <p>Hydrate. Focus. Thrive. Together.</p>
+      <small>Small habit. Big impact. Educational estimate only.</small>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
